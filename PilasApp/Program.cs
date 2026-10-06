@@ -31,6 +31,38 @@ class Pila<T>
     }
     public bool IsEmpty() => tope == -1;
     public void Clear() => tope = -1;
+
+    static void RevertirTexto()
+    {
+        Console.Write("Ingrese una cadena de texto: ");
+        string texto = Console.ReadLine();
+
+        Pila<char> pila = new Pila<char>(texto.Length);
+        foreach (char c in texto)
+            pila.Push(c);
+
+        string invertido = "";
+        while (!pila.IsEmpty())
+            invertido += pila.Pop();
+
+        Console.WriteLine($"Cadena invertida: {invertido}");
+    }
+
+    static void RevertirNumeros()
+    {
+        Console.Write("Ingrese números separados por espacio: ");
+        string[] partes = Console.ReadLine()
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        Pila<int> pila = new Pila<int>(partes.Length);
+        foreach (string dato in partes)
+            pila.Push(int.Parse(dato));
+
+        Console.Write("Serie invertida: ");
+        while (!pila.IsEmpty())
+            Console.Write(pila.Pop() + " ");
+        Console.WriteLine();
+    }
 }
 
 class Program
